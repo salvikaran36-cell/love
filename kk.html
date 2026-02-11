@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Shravani ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background: linear-gradient(-45deg,#ff9bb3,#ffc0cb,#ff85a2,#ffd6e0);
+  background-size:400% 400%;
+  animation: gradientBG 12s ease infinite;
+  color:white;
+}
+
+@keyframes gradientBG{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
+.page{
+  display:none;
+  min-height:100vh;
+  padding:40px 20px;
+  box-sizing:border-box;
+}
+
+.page.active{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.card{
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(12px);
+  padding:30px;
+  border-radius:20px;
+  max-width:600px;
+  width:100%;
+  text-align:center;
+}
+
+h1,h2{
+  font-family:'Playfair Display',serif;
+}
+
+button{
+  margin-top:20px;
+  padding:14px 30px;
+  font-size:18px;
+  border:none;
+  border-radius:30px;
+  cursor:pointer;
+}
+
+#yesBtn{
+  background:#ff4d6d;
+  color:white;
+}
+
+#noBtn{
+  background:#888;
+  color:white;
+  margin-left:10px;
+  position:relative;
+}
+
+/* Hearts */
+.heart{
+  position:fixed;
+  top:-10px;
+  color:white;
+  animation:fall linear forwards;
+  pointer-events:none;
+}
+
+@keyframes fall{
+  to{
+    transform:translateY(100vh);
+    opacity:0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<audio id="bgMusic" loop>
+  <source src="until-i-found-you.mp3" type="audio/mpeg">
+</audio>
+
+<div class="page active" id="page1">
+  <div class="card">
+    <h1>Hi Shravani ❤️</h1>
+    <p>I made something special for you...</p>
+    <button onclick="nextPage(2)">Open My Heart 💌</button>
+  </div>
+</div>
+
+<div class="page" id="page2">
+  <div class="card">
+    <h2>Why I Love You ❤️</h2>
+    <p>
+    ❤️ You make my ordinary days magical.<br><br>
+    ❤️ Your voice during our late night calls.<br><br>
+    ❤️ The comfort I feel knowing you're mine.<br><br>
+    ❤️ The way you understand me without words.<br><br>
+    ❤️ Simply because you are you.
+    </p>
+    <button onclick="nextPage(3)">Next 💕</button>
+  </div>
+</div>
+
+<div class="page" id="page3">
+  <div class="card">
+    <h2>Our Late Night Calls 🌙</h2>
+    <p>
+    Those endless conversations at 2 AM...
+    laughing, dreaming, talking about everything and nothing.
+    Even through a screen, time disappears when I'm with you.
+    Those moments mean more to me than you know.
+    </p>
+    <button onclick="nextPage(4)">One More Thing ❤️</button>
+  </div>
+</div>
+
+<div class="page" id="page4">
+  <div class="card">
+    <h2>Shravani ❤️</h2>
+    <p>
+    Until I found you, I didn’t know love could feel this calm,
+    this deep, this real. You are my today, my tomorrow,
+    and my forever.
+    </p>
+
+    <h2 style="margin-top:20px;">
+      Will you be my Valentine? 💖
+    </h2>
+
+    <div>
+      <button id="yesBtn" onclick="sayYes()">Yes ❤️</button>
+      <button id="noBtn" onclick="moveNo()">No 🙈</button>
+    </div>
+  </div>
+</div>
+
+<script>
+
+function nextPage(num){
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  document.getElementById("page"+num).classList.add("active");
+  window.scrollTo(0,0);
+}
+
+/* Hearts */
+function createHeart(){
+  const heart=document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML="❤";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.animationDuration=(Math.random()*3+3)+"s";
+  heart.style.fontSize=(Math.random()*20+10)+"px";
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),6000);
+}
+setInterval(createHeart,600);
+
+/* Music */
+document.body.addEventListener("click",function(){
+  const music=document.getElementById("bgMusic");
+  if(music.paused){
+    music.play();
+  }
+});
+
+/* Yes */
+let yesSize=18;
+function sayYes(){
+  yesSize+=5;
+  document.getElementById("yesBtn").style.fontSize=yesSize+"px";
+
+  if(yesSize>40){
+    document.body.innerHTML=`
+    <div style="display:flex;justify-content:center;align-items:center;height:100vh;text-align:center;color:white;">
+      <div>
+        <h1 style="font-family:'Playfair Display';font-size:40px;">YAYYY ❤️</h1>
+        <p style="font-size:22px;">
+        You just made me the happiest person alive.
+        </p>
+        <h2>Forever Yours,<br>Karan 💕</h2>
+      </div>
+    </div>`;
+  }
+}
+
+/* No */
+function moveNo(){
+  const btn=document.getElementById("noBtn");
+  btn.style.position="absolute";
+  btn.style.left=Math.random()*60+"vw";
+  btn.style.top=Math.random()*60+"vh";
+}
+
+</script>
+
+</body>
+</html>
